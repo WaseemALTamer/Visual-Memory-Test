@@ -1,8 +1,4 @@
-BLACK = (150, 150, 150)
-WHITE = (200, 200, 200)
+color = (37, 115, 193)
+result_color = tuple(c1 - c2 for c1, c2 in zip((33,33,33), color))
 
-
-
-result = tuple(int(value * 0.5) for value in WHITE)
-
-print(result)
+print(result_color)

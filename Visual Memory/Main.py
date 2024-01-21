@@ -9,7 +9,7 @@ Display.ROWS = 7
 Display.COLS = 7
 
 
-Display.FLASHTIMER = 5
+Display.FLASHTIMER = 1
 
 
 Display.InitializeWindow()

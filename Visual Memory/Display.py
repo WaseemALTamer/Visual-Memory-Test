@@ -18,6 +18,7 @@ MOUSE_BUTTON_LEFT_STATE = False
 FPS = 60
 SQURENUM = 17
 FLASHTIMER = 2
+FADECOLORTIME = 0.7
 
 
 
@@ -125,8 +126,19 @@ def Board_Checker():
         Score = 0
     
 
+def colorFade():
+    global FADECOLORTIME, BLACK, Timer
 
+    if FADECOLORTIME < time.time() - Timer:
+        return BLACK
 
+    if Timer <=time.time():
+        elip = time.time() - Timer
+        color = (37, 115, 193)
+        difference = tuple(c1 - c2 for c1, c2 in zip((33,33,33), color))
+        gradintTimesTime = tuple(int(value * 1/FADECOLORTIME * elip) for value in difference)
+        color = tuple(c1 + c2 for c1, c2 in zip(gradintTimesTime, color))
+    return color
 
 #Start the window
 def InitializeWindow():
@@ -177,10 +189,10 @@ def MainWindowLoop():
                     color = (37, 115, 193)
 
                 if DisplayBoard[row][col] == 5:
-                    color = BLACK
+                    color = colorFade()
                     
                 if DisplayBoard[row][col] == 6:
-                    color = (0,255,0)
+                    color = (37, 115, 193)
 
                 pygame.draw.rect(Screen, color, (col * GRID_SIZE, row * GRID_SIZE, GRID_SIZE, GRID_SIZE))
 
